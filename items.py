@@ -61,3 +61,13 @@ class CPU(SupplyItem):
         print(f"Total Value: ${self.get_total_value():.2f}")
         print(f"Socket Type: {self.socket_type}")
         print("-" * 30)
+
+    def to_dict(self):
+        return {
+            "type": "CPU",
+            "item_id": self.item_id,
+            "name": self.name,
+            "quantity": self.quantity,
+            "price": self.price,
+            "socket_type": self.socket_type
+        }
