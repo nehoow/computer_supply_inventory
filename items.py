@@ -52,3 +52,12 @@ class CPU(SupplyItem):
         
         super().__init__(item_id, name, quantity, price)
         self.socket_type = socket_type
+    
+    def display_details(self):
+        print(f"--- CPU Details (ID: {self.item_id}) ---")
+        print(f"Name: {self.name}")
+        print(f"Quantity: {self.quantity}")
+        print(f"Price: ${self.price:.2f}")
+        print(f"Total Value: ${self.get_total_value():.2f}")
+        print(f"Socket Type: {self.socket_type}")
+        print("-" * 30)
