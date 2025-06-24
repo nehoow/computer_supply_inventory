@@ -77,6 +77,29 @@ def main():
     args = parser.parse_args()
 
     try:
+        if args.command == "add":
+            common_args = {
+                "item_id": args.id,
+                "name": args.name,
+                "quantity": args.qty,
+                "price": args.price,
+            }
+            if args.item_type == "cpu":
+                item = CPU(**common_args, socket_type=args.socket)
+            elif args.item_type == "ram":
+                item = RAM(**common_args, capacity_gb=args.capacity_gb)
+            elif args.item_type == "monitor":
+                item = Monitor(**common_args, screen_size_inches=args.size_inch)
+            elif args.item_type == "storage":
+                item = Storage(**common_args, capacity_gb=args.capacity_gb)
+            elif args.item_type == "peripheral":
+                item = Peripheral(**common_args, device_type=args.dev_type)
+            else:
+                print(f"Error: Unknown item type '{args.item_type}'")
+                return
+            
+            inventory_manager.add_item(item)
+
         
         if args.command is None: # If no command is given, print help
             parser.print_help()
