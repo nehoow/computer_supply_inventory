@@ -27,3 +27,6 @@ class SupplyItem(ABC):
             raise ValueError(f"Insufficient stock for {self.name}. Available: {self.quantity}, Requested: {amount}")
         self.quantity -= amount
         print(f"Sold {amount} of {self.name}. New quantity: {self.quantity}")
+    
+    def get_total_value(self) -> float:
+        return self.quantity * self.price
