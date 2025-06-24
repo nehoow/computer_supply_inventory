@@ -36,3 +36,14 @@ class Inventory:
         for item_id, item in self.items.items():
             item.display_details()
         print("-----------------------------\n")
+
+    def list_items_by_type(self, item_type: str):
+        """Lists items of a specific type (e.g., 'CPU', 'Monitor')."""
+        found_items = [item for item in self.items.values() if item.__class__.__name__.lower() == item_type.lower()]
+        if not found_items:
+            print(f"No {item_type} items found.")
+            return
+        print(f"\n--- {item_type} Items ---")
+        for item in found_items:
+            item.display_details()
+        print("---------------------------\n")
