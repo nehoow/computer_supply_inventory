@@ -81,3 +81,25 @@ class Inventory:
             print(f"Inventory data saved to {self.data_file}")
         except IOError as e:
             print(f"Error saving data: {e}")
+    
+     def load_data(self):
+        """Loads inventory data from a JSON file."""
+        try:
+            with open(self.data_file, 'r') as f:
+                data = json.load(f)
+                self.items.clear()
+
+                for item_data in data.get("items", []):
+                    try:
+                        item = item_from_dict(item_data)
+                        self.items[item.item_id] = item
+                    except ValueError as e:
+                        print(f"Warning: Could not load item '{item_data.get('item_id', 'unknown')}' due to: {e}")
+
+            print(f"Inventory data loaded from {self.data_file}")
+        except FileNotFoundError:
+            print(f"No existing data file '{self.data_file}' found. Starting with empty inventory.")
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON from {self.data_file}: {e}. Starting with empty inventory.")
+        except Exception as e:
+            print(f"An unexpected error occurred during data loading: {e}. Starting with empty inventory.")
