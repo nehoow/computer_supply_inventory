@@ -170,3 +170,28 @@ class Peripheral(SupplyItem):
             "price": self.price,
             "device_type": self.device_type
         }
+
+def item_from_dict(data: dict):
+    item_type = data.get('type')
+    if not item_type:
+        raise ValueError("Item dictionary must contain a 'type' field.")
+
+    common_args = {
+        'item_id': data['item_id'],
+        'name': data['name'],
+        'quantity': data['quantity'],
+        'price': data['price']
+    }
+
+    if item_type == "CPU":
+        return CPU(**common_args, socket_type=data['socket_type'])
+    elif item_type == "RAM":
+        return RAM(**common_args, capacity_gb=data['capacity_gb'])
+    elif item_type == "Monitor":
+        return Monitor(**common_args, screen_size_inches=data['screen_size_inches'])
+    elif item_type == "Storage":
+        return Storage(**common_args, capacity_gb=data['capacity_gb'])
+    elif item_type == "Peripheral":
+        return Peripheral(**common_args, device_type=data['device_type'])
+    else:
+        raise ValueError(f"Unknown item type: {item_type}")
