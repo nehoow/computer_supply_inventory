@@ -27,6 +27,14 @@ class Inventory:
         """Finds and returns an item by its ID, or None if not found."""
         return self.items.get(item_id)
     
+    def restock_item(self, item_id: str, amount: int):
+        """Restocks a specific item."""
+        item = self.find_item(item_id)
+        if not item:
+            raise ValueError(f"Item with ID '{item_id}' not found.")
+        item.restock(amount)
+        self.save_data()
+    
     def list_all_items(self):
         """Lists details of all items in the inventory."""
         if not self.items:
