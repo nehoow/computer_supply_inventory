@@ -8,11 +8,11 @@ def main():
     parser = argparse.ArgumentParser(description="Simplified Computer Supplies Inventory Management System.")
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-     # --- Add Item Command ---
+    
     add_parser = subparsers.add_parser("add", help="Add a new supply item.")
     add_subparsers = add_parser.add_subparsers(dest="item_type", required=True, help="Type of item to add")
 
-    # Common arguments for all items
+    # Common arguments
     def add_common_args(item_parser):
         item_parser.add_argument("--id", required=True, help="Unique Item ID")
         item_parser.add_argument("--name", required=True, help="Name of the item")
@@ -45,25 +45,25 @@ def main():
     peripheral_parser.add_argument("--dev_type", required=True, help="Device type (e.g., Keyboard, Mouse, Webcam)")
 
     
-    # --- Remove Item Command ---
+
     remove_parser = subparsers.add_parser("remove", help="Remove an item by ID.")
     remove_parser.add_argument("item_id", help="ID of the item to remove.")
 
-    # --- View Item Command ---
+
     view_parser = subparsers.add_parser("view", help="View details of a specific item.")
     view_parser.add_argument("item_id", help="ID of the item to view.")
 
-    # --- Restock Item Command ---
+   
     restock_parser = subparsers.add_parser("restock", help="Restock an item's quantity.")
     restock_parser.add_argument("item_id", help="ID of the item to restock.")
     restock_parser.add_argument("amount", type=int, help="Amount to restock.")
 
-    # --- Sell Item Command ---
+
     sell_parser = subparsers.add_parser("sell", help="Sell items and decrease quantity.")
     sell_parser.add_argument("item_id", help="ID of the item to sell.")
     sell_parser.add_argument("amount", type=int, help="Amount to sell.")
 
-    # --- List Commands ---
+
     list_parser = subparsers.add_parser("list", help="List inventory items.")
     list_subparsers = list_parser.add_subparsers(dest="list_type", required=True, help="Type of listing")
 
@@ -71,7 +71,7 @@ def main():
     list_items_type_parser = list_subparsers.add_parser("type", help="List items by a specific type.")
     list_items_type_parser.add_argument("--item_type", required=True, choices=['cpu', 'ram', 'monitor', 'storage', 'peripheral'], help="The type of item to list.")
 
-    # --- Total Value Command ---
+
     total_value_parser = subparsers.add_parser("total-value", help="Calculate total inventory value.")
 
     args = parser.parse_args()
@@ -125,7 +125,7 @@ def main():
         elif args.command == "total-value":
             inventory_manager.get_total_inventory_value()
 
-        elif args.command is None: # If no command is given, print help
+        else:
             parser.print_help()
         
 

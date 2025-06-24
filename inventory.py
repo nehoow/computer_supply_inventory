@@ -3,9 +3,9 @@ from items import item_from_dict, SupplyItem, CPU, RAM, Monitor, Storage, Periph
 
 class Inventory:
     def __init__(self, data_file="inventory_data.json"):
-        self.items: dict[str, SupplyItem] = {} # item_id -> SupplyItem object
+        self.items: dict[str, SupplyItem] = {} 
         self.data_file = data_file
-        self.load_data() # Load data automatically on initialization
+        self.load_data() 
     
     def add_item(self, item: SupplyItem):
         """Adds a SupplyItem object to the inventory."""
