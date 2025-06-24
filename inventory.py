@@ -22,3 +22,7 @@ class Inventory:
         del self.items[item_id]
         print(f"Removed item with ID: {item_id}")
         self.save_data()
+
+    def find_item(self, item_id: str) -> SupplyItem | None:
+        """Finds and returns an item by its ID, or None if not found."""
+        return self.items.get(item_id)
