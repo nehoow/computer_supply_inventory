@@ -145,3 +145,28 @@ class Storage(SupplyItem):
             "price": self.price,
             "capacity_gb": self.capacity_gb
         }
+
+class Peripheral(SupplyItem):
+    def __init__(self, item_id: str, name: str, quantity: int, price: float,
+                 device_type: str):
+        super().__init__(item_id, name, quantity, price)
+        self.device_type = device_type # e.g., "Keyboard", "Mouse", "Webcam"
+
+    def display_details(self):
+        print(f"--- Peripheral Details (ID: {self.item_id}) ---")
+        print(f"Name: {self.name}")
+        print(f"Quantity: {self.quantity}")
+        print(f"Price: ${self.price:.2f}")
+        print(f"Total Value: ${self.get_total_value():.2f}")
+        print(f"Device Type: {self.device_type}")
+        print("-" * 30)
+
+    def to_dict(self):
+        return {
+            "type": "Peripheral",
+            "item_id": self.item_id,
+            "name": self.name,
+            "quantity": self.quantity,
+            "price": self.price,
+            "device_type": self.device_type
+        }
