@@ -63,3 +63,9 @@ class Inventory:
             raise ValueError(f"Item with ID '{item_id}' not found.")
         item.sell(amount)
         self.save_data()
+    
+    def get_total_inventory_value(self) -> float:
+        """Calculates the total monetary value of all items in inventory."""
+        total_value = sum(item.get_total_value() for item in self.items.values())
+        print(f"Total inventory value: ${total_value:.2f}")
+        return total_value
