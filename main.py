@@ -100,8 +100,32 @@ def main():
             
             inventory_manager.add_item(item)
 
-        
-        if args.command is None: # If no command is given, print help
+        elif args.command == "remove":
+            inventory_manager.remove_item(args.item_id)
+
+        elif args.command == "view":
+            item = inventory_manager.find_item(args.item_id)
+            if item:
+                item.display_details()
+            else:
+                print(f"Item with ID '{args.item_id}' not found.")
+
+        elif args.command == "restock":
+            inventory_manager.restock_item(args.item_id, args.amount)
+
+        elif args.command == "sell":
+            inventory_manager.sell_item(args.item_id, args.amount)
+
+        elif args.command == "list":
+            if args.list_type == "all":
+                inventory_manager.list_all_items()
+            elif args.list_type == "type":
+                inventory_manager.list_items_by_type(args.item_type)
+
+        elif args.command == "total-value":
+            inventory_manager.get_total_inventory_value()
+
+        elif args.command is None: # If no command is given, print help
             parser.print_help()
         
 
