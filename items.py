@@ -35,7 +35,7 @@ class SupplyItem(ABC):
     def display_details(self):
         """Abstract method to print specific details of the item type."""
         pass
-    
+
     @abstractmethod
     def to_dict(self):
         """Convert the item to a dictionary representation."""
@@ -46,3 +46,9 @@ class SupplyItem(ABC):
 
     def __repr__(self):
         return self.__str__()
+    
+class CPU(SupplyItem):
+    def __init__(self, item_id: str, name: str, quantity: int, price: float,socket_type: str):
+        
+        super().__init__(item_id, name, quantity, price)
+        self.socket_type = socket_type
