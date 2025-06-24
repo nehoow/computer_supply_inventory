@@ -82,7 +82,7 @@ class Inventory:
         except IOError as e:
             print(f"Error saving data: {e}")
     
-     def load_data(self):
+    def load_data(self):
         """Loads inventory data from a JSON file."""
         try:
             with open(self.data_file, 'r') as f:
