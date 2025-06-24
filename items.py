@@ -32,6 +32,11 @@ class SupplyItem(ABC):
         return self.quantity * self.price
     
     @abstractmethod
+    def display_details(self):
+        """Abstract method to print specific details of the item type."""
+        pass
+    
+    @abstractmethod
     def to_dict(self):
         """Convert the item to a dictionary representation."""
         pass
