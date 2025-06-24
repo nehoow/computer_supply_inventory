@@ -74,7 +74,7 @@ class CPU(SupplyItem):
     
 class RAM(SupplyItem):
     def __init__(self, item_id: str, name: str, quantity: int, price: float,
-                 capacity_gb: int): # Simplified attributes
+                 capacity_gb: int):
         super().__init__(item_id, name, quantity, price)
         self.capacity_gb = capacity_gb
 
@@ -95,4 +95,28 @@ class RAM(SupplyItem):
             "quantity": self.quantity,
             "price": self.price,
             "capacity_gb": self.capacity_gb
+        }
+class Monitor(SupplyItem):
+    def __init__(self, item_id: str, name: str, quantity: int, price: float,
+                 screen_size_inches: float): 
+        super().__init__(item_id, name, quantity, price)
+        self.screen_size_inches = screen_size_inches
+
+    def display_details(self):
+        print(f"--- Monitor Details (ID: {self.item_id}) ---")
+        print(f"Name: {self.name}")
+        print(f"Quantity: {self.quantity}")
+        print(f"Price: ${self.price:.2f}")
+        print(f"Total Value: ${self.get_total_value():.2f}")
+        print(f"Screen Size: {self.screen_size_inches} inches")
+        print("-" * 30)
+
+    def to_dict(self):
+        return {
+            "type": "Monitor",
+            "item_id": self.item_id,
+            "name": self.name,
+            "quantity": self.quantity,
+            "price": self.price,
+            "screen_size_inches": self.screen_size_inches
         }
