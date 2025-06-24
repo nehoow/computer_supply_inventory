@@ -26,3 +26,13 @@ class Inventory:
     def find_item(self, item_id: str) -> SupplyItem | None:
         """Finds and returns an item by its ID, or None if not found."""
         return self.items.get(item_id)
+    
+    def list_all_items(self):
+        """Lists details of all items in the inventory."""
+        if not self.items:
+            print("Inventory is empty.")
+            return
+        print("\n--- Current Inventory Items ---")
+        for item_id, item in self.items.items():
+            item.display_details()
+        print("-----------------------------\n")
