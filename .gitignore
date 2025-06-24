@@ -1,0 +1,11 @@
+# Gitignore for Python CLI Inventory System
+# Ignore data files
+inventory_data.json
+
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+
+# Ignore editor/IDE files (optional)
+.vscode/
+.idea/
