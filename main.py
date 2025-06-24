@@ -43,7 +43,37 @@ def main():
     peripheral_parser = add_subparsers.add_parser("peripheral", help="Add a Peripheral (Keyboard, Mouse, etc.).")
     add_common_args(peripheral_parser)
     peripheral_parser.add_argument("--dev_type", required=True, help="Device type (e.g., Keyboard, Mouse, Webcam)")
+
     
+    # --- Remove Item Command ---
+    remove_parser = subparsers.add_parser("remove", help="Remove an item by ID.")
+    remove_parser.add_argument("item_id", help="ID of the item to remove.")
+
+    # --- View Item Command ---
+    view_parser = subparsers.add_parser("view", help="View details of a specific item.")
+    view_parser.add_argument("item_id", help="ID of the item to view.")
+
+    # --- Restock Item Command ---
+    restock_parser = subparsers.add_parser("restock", help="Restock an item's quantity.")
+    restock_parser.add_argument("item_id", help="ID of the item to restock.")
+    restock_parser.add_argument("amount", type=int, help="Amount to restock.")
+
+    # --- Sell Item Command ---
+    sell_parser = subparsers.add_parser("sell", help="Sell items and decrease quantity.")
+    sell_parser.add_argument("item_id", help="ID of the item to sell.")
+    sell_parser.add_argument("amount", type=int, help="Amount to sell.")
+
+    # --- List Commands ---
+    list_parser = subparsers.add_parser("list", help="List inventory items.")
+    list_subparsers = list_parser.add_subparsers(dest="list_type", required=True, help="Type of listing")
+
+    list_subparsers.add_parser("all", help="List all items in inventory.")
+    list_items_type_parser = list_subparsers.add_parser("type", help="List items by a specific type.")
+    list_items_type_parser.add_argument("--item_type", required=True, choices=['cpu', 'ram', 'monitor', 'storage', 'peripheral'], help="The type of item to list.")
+
+    # --- Total Value Command ---
+    total_value_parser = subparsers.add_parser("total-value", help="Calculate total inventory value.")
+
     args = parser.parse_args()
 
     try:
