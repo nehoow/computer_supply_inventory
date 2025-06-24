@@ -69,3 +69,15 @@ class Inventory:
         total_value = sum(item.get_total_value() for item in self.items.values())
         print(f"Total inventory value: ${total_value:.2f}")
         return total_value
+    
+    def save_data(self):
+        """Saves current inventory data to a JSON file."""
+        data_to_save = {
+            "items": [item.to_dict() for item in self.items.values()]
+        }
+        try:
+            with open(self.data_file, 'w') as f:
+                json.dump(data_to_save, f, indent=4)
+            print(f"Inventory data saved to {self.data_file}")
+        except IOError as e:
+            print(f"Error saving data: {e}")
