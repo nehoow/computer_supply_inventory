@@ -30,3 +30,14 @@ class SupplyItem(ABC):
     
     def get_total_value(self) -> float:
         return self.quantity * self.price
+    
+    @abstractmethod
+    def to_dict(self):
+        """Convert the item to a dictionary representation."""
+        pass
+
+    def __str__(self):
+        return f"{self.__class__.__name__}(ID: {self.item_id}, Name: {self.name}, Qty: {self.quantity})"
+
+    def __repr__(self):
+        return self.__str__()
