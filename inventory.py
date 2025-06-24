@@ -55,3 +55,11 @@ class Inventory:
         for item in found_items:
             item.display_details()
         print("---------------------------\n")
+
+    def sell_item(self, item_id: str, amount: int):
+        """Sells a specific item."""
+        item = self.find_item(item_id)
+        if not item:
+            raise ValueError(f"Item with ID '{item_id}' not found.")
+        item.sell(amount)
+        self.save_data()
