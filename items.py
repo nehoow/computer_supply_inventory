@@ -13,3 +13,9 @@ class SupplyItem(ABC):
         self.name = name
         self.quantity = quantity
         self.price = price
+        
+    def restock(self, amount: int):
+        if not isinstance(amount, int) or amount <= 0:
+            raise ValueError("Restock amount must be a positive integer.")
+        self.quantity += amount
+        print(f"Restocked {self.name} by {amount}. New quantity: {self.quantity}")
