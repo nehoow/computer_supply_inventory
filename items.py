@@ -120,3 +120,28 @@ class Monitor(SupplyItem):
             "price": self.price,
             "screen_size_inches": self.screen_size_inches
         }
+
+class Storage(SupplyItem):
+    def __init__(self, item_id: str, name: str, quantity: int, price: float,
+                 capacity_gb: int):
+        super().__init__(item_id, name, quantity, price)
+        self.capacity_gb = capacity_gb
+
+    def display_details(self):
+        print(f"--- Storage Details (ID: {self.item_id}) ---")
+        print(f"Name: {self.name}")
+        print(f"Quantity: {self.quantity}")
+        print(f"Price: ${self.price:.2f}")
+        print(f"Total Value: ${self.get_total_value():.2f}")
+        print(f"Capacity: {self.capacity_gb} GB")
+        print("-" * 30)
+
+    def to_dict(self):
+        return {
+            "type": "Storage",
+            "item_id": self.item_id,
+            "name": self.name,
+            "quantity": self.quantity,
+            "price": self.price,
+            "capacity_gb": self.capacity_gb
+        }
