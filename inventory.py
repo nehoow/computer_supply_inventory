@@ -14,3 +14,11 @@ class Inventory:
         self.items[item.item_id] = item
         print(f"Added item: {item.name} (ID: {item.item_id})")
         self.save_data()
+
+    def remove_item(self, item_id: str):
+        """Removes an item from the inventory by its ID."""
+        if item_id not in self.items:
+            raise ValueError(f"Item with ID '{item_id}' not found.")
+        del self.items[item_id]
+        print(f"Removed item with ID: {item_id}")
+        self.save_data()
